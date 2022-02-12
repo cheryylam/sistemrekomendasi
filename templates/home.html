@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Recommendation</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.js">  
+    </script>  
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.js">  
+    </script>  
+    
+    <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/themes/ui-lightness/jquery-ui.css"
+        rel="stylesheet" type="text/css"/>  
+</head>
+   <body>
+        <form action="{{ url_for('main') }}" method="POST">
+            <div class="div1">
+            <h1 style="background-color:#686868;">Find Your Similar Hotel in Yogyakarta</h1>
+            </div>
+            <div class="div2">
+                    <h3 >We work to help you in choosing hotels by providing 10 similar hotel recommendations.</h3>
+         <p> <span> Input your hotel's name here </span> &nbsp; <label>
+             <input type = "text" id="daftarhotel" name="daftarhotel" />
+             <script>
+                $( function() {
+                var availableTags = [
+                    {% for cheryl in cheryls %}
+                        "{{cheryl}}",
+                    {% endfor %}
+                ];
+                $( "#daftarhotel").autocomplete({
+                  source: availableTags
+                });
+              } );
+              </script>
+         </label> <input type = "submit" value = "Submit" />
+         
+      </form>
+    </div>
+   </body>
+<style>
+    body {
+  font-family: "Poppins", sans-serif;
+  font-weight: 300;
+  font-size: 100%;
+  line-height: 1.5;
+  color: #000;
+  margin: 150px 350px;
+  background-size: 1370px 700px;
+  background-image: url({{ url_for('static', filename='img7.jpg') }})
+}
+    .div1{
+    color: white;
+    text-shadow: 2px 2px 4px #000000;
+    text-align: center;
+    }
+    .div2 {
+    color: black;
+    width: 500px;
+    margin: auto;
+    text-align: center;
+   }
+   span {
+    background-color: #686868;
+   }
+   </style>
+</html>

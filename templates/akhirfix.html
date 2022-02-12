@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+   <body>
+    <div class="div2">
+            <h1 style="background-color:#686868;">10 Hotel's that are Similar to The Hotels You Selected</h1>
+   <table>
+            <tr>
+                <th>No</th>
+                <th>Description</th>
+                <th>Hotel Based on Facility</th>
+                <th>Hotel Based on Nearby Attraction</th>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>{{result1[0]}}</td>
+                <td>{{result2[0]}}</td>
+                <td>{{result3[0]}}</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>{{result1[1]}}</td>
+                <td>{{result2[1]}}</td>
+                <td>{{result3[1]}}</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>{{result1[2]}}</td>
+                <td>{{result2[2]}}</td>
+                <td>{{result3[2]}}</td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td>{{result1[3]}}</td>
+                <td>{{result2[3]}}</td>
+                <td>{{result3[3]}}</td>
+            </tr>
+            <tr>
+                <td>5</td>
+                <td>{{result1[4]}}</td>
+                <td>{{result2[4]}}</td>
+                <td>{{result3[4]}}</td>
+            </tr>
+            <tr>
+                <td>6</td>
+                <td>{{result1[5]}}</td>
+                <td>{{result2[5]}}</td>
+                <td>{{result3[5]}}</td>
+            </tr>
+            <tr>
+                <td>7</td>
+                <td>{{result1[6]}}</td>
+                <td>{{result2[6]}}</td>
+                <td>{{result3[6]}}</td>
+            </tr>
+            <tr>
+                <td>8</td>
+                <td>{{result1[7]}}</td>
+                <td>{{result2[7]}}</td>
+                <td>{{result3[7]}}</td>
+            </tr>
+            <tr>
+                <td>9</td>
+                <td>{{result1[8]}}</td>
+                <td>{{result2[8]}}</td>
+                <td>{{result3[8]}}</td>
+            </tr>
+            <tr>
+                <td>10</td>
+                <td>{{result1[9]}}</td>
+                <td>{{result2[9]}}</td>
+                <td>{{result3[9]}}</td>
+            </tr>
+        </table>
+        <h4>
+        <a href="{{ url_for('main') }}"><button type="button">Return</button></a>
+        </h4>
+        <h4>Hope it helps you to choose the best hotel!</h4>
+   </div>
+   </body>
+<style>
+    body {
+  font-family: "Poppins", sans-serif;
+  font-weight: 80;
+  font-size: 100%;
+  line-height: 1.2;
+  color: #000;
+  margin: 50px 200px;
+  background-size: 1370px 700px;
+  background-image: url({{ url_for('static', filename='img7.jpg') }})
+}
+    .div2 {
+    width: 500px;
+    margin: auto;
+    text-align: center;
+    background-color: white;
+   }
+   h1{
+    font-size: 30px;
+    color: white;
+    text-shadow: 2px 2px 4px #000000;
+   }
+   table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th, td {
+  text-align: center;
+  padding: 8px;
+}
+td{
+    font-size: 15px;
+}
+
+tr:nth-child(even){background-color: #F5f5DC}
+
+th {
+  background-color: #686868;
+  color: black;
+  font-size: 17px;
+} 
+   </style>
+</html>
