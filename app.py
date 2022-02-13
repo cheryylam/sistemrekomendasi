@@ -122,7 +122,7 @@ def recommendations1(namahotel, cos_sim1 = cos_sim1):
         
     return recommended_hotel
 
-def recommendations2(namahotel, cos_sim2 = cos_sim2):
+def recommendations2(namahotel, cos_sim1 = cos_sim1, cos_sim2 = cos_sim2,cos_sim3 = cos_sim3 ):
     
     recommended_hotel = []
     
@@ -130,34 +130,24 @@ def recommendations2(namahotel, cos_sim2 = cos_sim2):
     idx = indices[indices == namahotel].index[0]
 
     # Membuat series berdasarkan skor kesamaan
-    score_series = pd.Series(cos_sim2[idx]).sort_values(ascending = False)
+    score_series1 = pd.Series(cos_sim1[idx]).sort_values(ascending = False)
+    score_series2 = pd.Series(cos_sim2[idx]).sort_values(ascending = False)
+    score_series3 = pd.Series(cos_sim3[idx]).sort_values(ascending = False)
 
     # mengambil index dan dibuat 10 baris rekomendasi terbaik
-    top_10_indexes = list(score_series.iloc[1:11].index)
+    top_10_indexes1 = list(score_series1.iloc[1:11].index)
     
-    for i in top_10_indexes:
-        recommended_hotel.append(list(hotel.index)[i])
-        
-    return recommended_hotel
-
-def recommendations3(namahotel, cos_sim3 = cos_sim3):
-    
-    recommended_hotel = []
-    
-    # Mengambil nama hotel berdasarkan variabel indicies
-    idx = indices[indices == namahotel].index[0]
-
-    # Membuat series berdasarkan skor kesamaan
-    score_series = pd.Series(cos_sim3[idx]).sort_values(ascending = False)
-
-    # mengambil index dan dibuat 10 baris rekomendasi terbaik
-    top_10_indexes = list(score_series.iloc[1:15].index)
-    top_10_cosim = list(score_series.iloc[1:15])
-    for i, cosim in zip(top_10_indexes, top_10_cosim):
-        if cosim == 1 or cosim == 0:
-            pass
-        else :
-            recommended_hotel.append(list(hotel.index)[i])
+    #mengambil nilai cosim fasilitas dan nearby
+    for i in top_10_indexes1 :
+        cosim2= score_series2.get(key=i)
+        cosim3= score_series3.get(key=i)
+        if cosim2 > cosim3 or cosim3==0 or cosim3==1 :
+            label= "Facility"
+        elif cosim2 < cosim3 :
+            label= "Nearby"
+        elif cosim2 == cosim3 :
+            label= "Both"  
+        recommended_hotel.append(label)
     return recommended_hotel
 
 @app.route('/', methods=['GET', 'POST'])
@@ -169,8 +159,7 @@ def main():
         hotels = request.form['daftarhotel']
         res1 = recommendations1(hotels)
         res2 = recommendations2(hotels)
-        res3 = recommendations3(hotels)
-        return render_template('akhirfix.html', result1=res1, result2=res2, result3=res3, cheryls=cheryls)
+        return render_template('akhirfix.html', result1=res1, result2=res2, cheryls=cheryls)
     else:
         return render_template('home.html')
  
